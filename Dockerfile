@@ -21,12 +21,13 @@ RUN mkdir -p git; \
 
 RUN gretlcli --version
 
-# RUN apt purge build-essential libc6-dev libc-dev \
+# RUN apt purge -y build-essential libc6-dev libc-dev \
 #	libglib2.0-dev libglib2.0-dev libgtk3-perl libgfs-dev \
 #	libpng-dev libxslt1-dev liblapack-dev libfftw3-dev \
 #	libreadline-dev zlib1g-dev libbz2-dev libxml2-dev libgmp-dev \
 #	libcurl4-gnutls-dev libmpfr-dev git \
-#	libjson-glib-1.0-0 libjson-glib-dev
+#	libjson-glib-1.0-0 libjson-glib-dev && \
+#	apt autoremove -y	
 
 #CMD ["gretlcli -e -b", "./print_data.inp"]
 
