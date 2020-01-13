@@ -43,12 +43,13 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	libjson-glib-dev \
 	openmpi-bin \
 	openmpi-common \
-	nano
+	nano \
+	ca-certificates
 
 RUN mkdir -p git; \
 	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git ; \
 	cd ./git/gretl-git; \
-    ./configure --enable-openmp; \
+    	./configure --enable-openmp; \
 	make -j$(nproc); \
 	make install; \
 	make clean; \
