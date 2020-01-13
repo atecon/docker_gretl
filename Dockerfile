@@ -1,9 +1,6 @@
 ARG IMAGE="ubuntu:19.10"
-#ARG GRETL_GIT_URL="git://git.code.sf.net/p/gretl/git"
 
-#LABEL maintainer="atecon@posteo.de"
-
-FROM $IMAGE 
+FROM ${IMAGE}
 
 RUN apt update -qq && apt install -y --no-install-recommends \
 	gcc \
@@ -48,7 +45,6 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	libgtk-3-dev \
 	libgtksourceview-3.0-dev
 
-
 RUN mkdir -p git; \
 	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git ; \
 	cd ./git/gretl-git; \
@@ -57,6 +53,5 @@ RUN mkdir -p git; \
 	make install; \
 	make clean; \
 	ldconfig
-
 
 RUN apt -y autoremove && rm -rf /var/lib/apt/lists/*

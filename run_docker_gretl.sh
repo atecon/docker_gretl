@@ -25,8 +25,8 @@ docker ps -a
 # Push Image to Docker Hub
 docker login				# TODO: do I need the credentials every time??
 
-docker commit --message "install ca-certificates" \
---author "Artur Tarassow" ddab02fdc9de atecon/gretl:2020a
+docker commit --message "install gtk libs" \
+--author "Artur Tarassow" eecf4db3a4b7 atecon/gretl:2020a
 
 # This works and uploads to a new repo named 
 #docker tag gretl:2020a gretl:2020
