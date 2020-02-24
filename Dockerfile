@@ -45,13 +45,15 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	libgtk-3-dev \
 	libgtksourceview-3.0-dev
 
-RUN mkdir -p git; \
-	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git ; \
-	cd ./git/gretl-git; \
-   	./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib; \
-	make -j$(nproc); \
-	make install; \
-	make clean; \
-	ldconfig
+RUN mkdir -p git && \
+	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git \
+	&& cd ./git/gretl-git \
+   	&& ./configure \
+   		--enable-openmp \
+   		--with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib \
+   	&& make -j$(nproc) \
+	&& make install \
+	&& make clean \
+	&& ldconfig
 
 RUN apt -y autoremove && rm -rf /var/lib/apt/lists/*
