@@ -47,3 +47,7 @@ docker push atecon/gretl:2020a
 10) docker login
 11) docker push atecon/gretl:2020a
 
+cd git/gretl-git && git pull \
+	&& ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib \
+	&& make -j$(nproc) && make install && make clean && ldconfig \
+	&& apt -y autoremove && rm -rf /var/lib/apt/lists/*
