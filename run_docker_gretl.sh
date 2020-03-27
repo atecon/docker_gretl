@@ -36,16 +36,21 @@ docker push atecon/gretl:2020a
 
 ## UPDATE container: https://blog.codeship.com/using-docker-commit-to-create-and-change-an-image/
 1) Pull latest container 
-2) docker run -it --rm gretl:2020a /bin/bash
-3) apt update -qq && apt upgrade -y
-4) cd git/gretl-git && git pull
-5) ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib
-6) make -j$(nproc) && make install && make clean && ldconfig
-7) apt -y autoremove && rm -rf /var/lib/apt/lists/*
-8) Open new terminal window, and determine CONTAINER_ID of running container: <docker ps -a>
-9) docker commit --message "Some update" --author "Artur Tarassow" <NEW CONTAINER_ID> atecon/gretl:2020a
-10) docker login
-11) docker push atecon/gretl:2020a
+docker run -it --rm gretl:2020a /bin/bash \
+&& apt update -qq && apt upgrade -y \
+&& cd git/gretl-git && git pull \
+&& ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib
+&& make -j$(nproc) \
+&& make install \
+&& make clean \
+&& ldconfig \
+&& apt -y autoremove \
+&& rm -rf /var/lib/apt/lists/*
+
+2) Open new terminal window, and determine CONTAINER_ID of running container: <docker ps -a>
+3) docker commit --message "Some update" --author "Artur Tarassow" <NEW CONTAINER_ID> atecon/gretl:2020a
+4) docker login
+5) docker push atecon/gretl:2020a
 
 cd git/gretl-git && git pull \
 	&& ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib \
