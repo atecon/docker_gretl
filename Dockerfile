@@ -43,7 +43,8 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	nano \
 	ca-certificates \
 	libgtk-3-dev \
-	libgtksourceview-3.0-dev
+	libgtksourceview-3.0-dev \
+	libgsf-1-dev
 
 RUN mkdir -p git && \
 	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git \
