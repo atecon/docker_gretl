@@ -7,9 +7,9 @@
 
 # First, build: docker build -t gretl .
 ARG PROG="gretl"
-ARG VERSION="2020a"
+ARG VERSION="2020b"
 
-docker build --tag $PROG:$VERSION . 
+docker build --tag ${PROG}:${VERSION} . 
 
 # Run in interactive mode
 docker run -it --rm gretl:2020a
