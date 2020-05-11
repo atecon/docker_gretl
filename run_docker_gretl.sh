@@ -39,7 +39,7 @@ docker push atecon/gretl:2020a
 docker run -it --rm gretl:2020a /bin/bash \
 && apt update -qq && apt upgrade -y \
 && cd git/gretl-git && git pull \
-&& ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib
+&& ./configure --enable-openmp --with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib \
 && make -j$(nproc) \
 && make install \
 && make clean \
