@@ -40,6 +40,7 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	libjson-glib-dev \
 	openmpi-bin \
 	openmpi-common \
+	libopenmpi-dev \
 	nano \
 	ca-certificates \
 	libgtk-3-dev \
