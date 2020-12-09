@@ -1,15 +1,25 @@
-ARG IMAGE="ubuntu:20.04"
+ARG IMAGE="ubuntu:20.10"
 
 FROM ${IMAGE}
 
-RUN apt update -qq && apt install -y --no-install-recommends \
+LABEL maintainer="atecon@posteo.de"
+LABEL version="0.1"
+LABEL description="Docker image based on ${IMAGE} for compitiling latest version of Gretl available (gretl.sourceforge.net/)."
+
+# Disable Prompt During Packages Installation
+ARG DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=Europe/Berlin
+
+RUN apt-get update -qq && apt-get install -yq \
+	--no-install-recommends --no-install-recommends \
 	gcc \
 	g++ \
 	g++-9 \
 	autoconf \
 	automake \
 	cmake \
-	apt-utils \
+	# apt-utils \
 	build-essential \
 	libtool \
 	flex \
@@ -47,16 +57,16 @@ RUN apt update -qq && apt install -y --no-install-recommends \
 	libgtksourceview-3.0-dev \
 	libgsf-1-dev
 
-RUN mkdir -p git && \
-	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git \
-	&& cd ./git/gretl-git \
-   	&& ./configure \
+RUN mkdir -p git && git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git
+
+RUN ls ./git/gretl-git && cd ./git/gretl-git && git config pull.rebase false && git pull
+
+RUN make clean && ./configure \
 	   	--enable-build-doc \
 		--enable-build-addons \
 		--enable-quiet-build
-   		#--enable-openmp \
-   		#--with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib
-   	&& make -j$(nproc) \
+
+RUN make -j$(nproc) \
 	&& make install \
 	&& make clean \
 	&& ldconfig
