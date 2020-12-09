@@ -4,7 +4,7 @@
 
 # First, build: docker build -t gretl .
 PROG="gretl"
-VERSION="2020b"
+VERSION="2020e"
 
 # Create a NEW image
 docker build --tag ${PROG}:${VERSION} . # run the Dockerfile in your current folder

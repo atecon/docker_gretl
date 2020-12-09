@@ -1,4 +1,4 @@
-ARG IMAGE="ubuntu:19.10"
+ARG IMAGE="ubuntu:20.04"
 
 FROM ${IMAGE}
 
@@ -51,8 +51,11 @@ RUN mkdir -p git && \
 	git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git \
 	&& cd ./git/gretl-git \
    	&& ./configure \
-   		--enable-openmp \
-   		--with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib \
+	   	--enable-build-doc \
+		--enable-build-addons \
+		--enable-quiet-build
+   		#--enable-openmp \
+   		#--with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi/lib
    	&& make -j$(nproc) \
 	&& make install \
 	&& make clean \

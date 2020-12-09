@@ -1,5 +1,0 @@
-# List existing images
-docker image ls
-
-# remove an image
-docker image rm [-f] <IMAGE ID>
