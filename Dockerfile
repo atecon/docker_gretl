@@ -61,12 +61,8 @@ RUN mkdir -p git && git clone git://git.code.sf.net/p/gretl/git ./git/gretl-git
 
 RUN ls ./git/gretl-git && cd ./git/gretl-git && git config pull.rebase false && git pull
 
-RUN make clean && ./configure \
-	   	--enable-build-doc \
-		--enable-build-addons \
-		--enable-quiet-build
-
-RUN make -j$(nproc) \
+RUN ./configure --enable-build-doc --enable-build-addons --enable-quiet-build \
+	&& make -j$(nproc) \
 	&& make install \
 	&& make clean \
 	&& ldconfig
