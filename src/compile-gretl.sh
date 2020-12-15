@@ -1,25 +1,27 @@
 #!/bin/bash
 
-cd "$HOME/git/gretl-git" || exit
-git pull
-make clean
+cd "git/gretl-git" || exit
+
+export MPILINK="-L/usr/lib/x86_64-linux-gnu/openmpi/lib -lmpi"
 
 ./configure \
-	--enable-build-doc \
 	--enable-build-addons \
-	--enable-quiet-build
+	--enable-quiet-build \
+	--enable-gui=no \
+	--enable-build-doc=no \
+	--with-mpi-lib=/usr/lib/x86_64-linux-gnu/openmpi #\
+	#--enable-openmp
+
 
 make -j"$(nproc)"
-sudo make pdfdocs
-sudo make install
+make install
 if [ "$?" -ne 0 ] ]
 then
-     printf "Failed to install gretl.\\n"
+     echo "Failed to install gretl."
      exit 1
 else
-	sudo make install-doc
 	make clean
-	sudo ldconfig
+	ldconfig
 
 	echo "################################################################"
 	echo "##################  Mmhhh, you've got a freshly   ##############"
