@@ -1,5 +1,7 @@
 # Using Docker
 
+I host a Gretl Docker container based on Ubuntu here:
+https://hub.docker.com/r/atecon/gretl/
 
 
 # Some basic commands
