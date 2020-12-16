@@ -221,10 +221,10 @@ Thus, we recommend to run a complete ```docker build``` based on some ubuntu ver
 
 ```
 docker login  # if you want to push the image somewhere
-docker build --tag ubuntu-gretl:2020f .
+docker build --tag ubuntu-gretl:latest .
 docker images # check the outcome
-docker ps -a  # check the outcome and note the container ID
-docker tag IMAGE_ID atecon/gretl:2020f
+docker run -it atecon/gretl:latest /bin/bash  # check the outcome and note the container ID
+docker tag IMAGE_ID atecon/gretl:latest
 docker tag IMAGE_ID USERNAME/REPO_NAME:TAG
 docker commit -a "AUTHOR" -m "SOME_COMMIT_MESSAGE" CONTAINER_ID USERNAME/REPO_NAME:TAG
 ```
@@ -232,13 +232,13 @@ docker commit -a "AUTHOR" -m "SOME_COMMIT_MESSAGE" CONTAINER_ID USERNAME/REPO_NA
 In my concrete case I ran:
 ```
 docker login  # if you want to push the image somewhere
-docker build --tag ubuntu-gretl:2020f .
+docker build --tag ubuntu-gretl:latest .
 docker images # check the outcome
-docker ps -a  # check the outcome and note the container ID
-docker tag edbb1a24100b atecon/gretl:2020f
-docker commit -a "atecon" -m "use ubuntu:20.10 + freshly compiled gretl version 2020f (current dev); remove unnecessary libs after compilation" 0ba0c4336d74 atecon/gretl:2020f
-docker run -it atecon/gretl:2020f gretlcli --version  # just a check
-docker push atecon/gretl:2020f
+docker run -it atecon/gretl:latest /bin/bash  # check the outcome and note the container ID
+docker tag edbb1a24100b atecon/gretl:latest
+docker commit -a "atecon" -m "use ubuntu:20.10 + freshly compiled gretl version 2020f (current dev); remove unnecessary libs after compilation" 0ba0c4336d74 atecon/gretl:latest
+docker run -it atecon/gretl:latest gretlcli --version  # just a check
+docker push atecon/gretl:latest
 ```
 
 
