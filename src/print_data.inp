@@ -1,7 +1,0 @@
-clear
-set verbose off
-
-open denmark.gdt -q
-print dataset -o
-
-print "First gretl program started using Docker!"

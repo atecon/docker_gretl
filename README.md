@@ -248,3 +248,6 @@ docker push atecon/gretl:2020f
 docker-run-vs-cmd-vs-entrypoint/) \
 - [ENTRYPOINT vs. CMD](https://phoenixnap.com/kb/docker-cmd-vs-entrypoint9) \
 - https://docs.docker.com/docker-hub/repos/
+- https://realpython.com/python-versions-docker/ \
+- https://stackify.com/docker-build-a-beginners-guide-to-building-docker-images/ \
+- https://www.linode.com/docs/applications/containers/create-tag-and-upload-your-own-docker-image/
